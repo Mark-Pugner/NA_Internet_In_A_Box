@@ -1,0 +1,220 @@
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [{EPOLLIN, {u32=4, u64=4}}], 1025, 1000) = 1
+accept4(4, {sa_family=AF_INET, sin_port=htons(65502), sin_addr=inet_addr("192.168.2.5")}, [112->16], SOCK_CLOEXEC|SOCK_NONBLOCK) = 8
+ioctl(8, FIONREAD, [0])                 = 0
+read(8, 0x122a918, 4095)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_ADD, 8, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+accept4(4, {sa_family=AF_INET, sin_port=htons(65503), sin_addr=inet_addr("192.168.2.5")}, [112->16], SOCK_CLOEXEC|SOCK_NONBLOCK) = 9
+ioctl(9, FIONREAD, [0])                 = 0
+read(9, 0x122a918, 4095)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_ADD, 9, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=9, u64=9}}) = 0
+accept4(4, 0x7ecb29ec, [112], SOCK_CLOEXEC|SOCK_NONBLOCK) = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(7, [{EPOLLIN, {u32=8, u64=8}}], 1025, 1000) = 1
+ioctl(8, FIONREAD, [491])               = 0
+read(8, "GET /cgi-bin/kareha.pl HTTP/1.1\r"..., 4095) = 491
+stat64("/var/www/html/cgi-bin/kareha.pl", {st_mode=S_IFREG|0755, st_size=32042, ...}) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin/kareha.pl", O_RDONLY|O_LARGEFILE) = 10
+close(10)                               = 0
+stat64("/usr/bin/perl", {st_mode=S_IFREG|0755, st_size=2844532, ...}) = 0
+openat(AT_FDCWD, "/usr/bin/perl", O_RDONLY|O_LARGEFILE) = 10
+close(10)                               = 0
+pipe2([10, 11], O_CLOEXEC)              = 0
+pipe2([12, 13], O_CLOEXEC)              = 0
+fcntl64(11, F_SETFD, FD_CLOEXEC)        = 0
+fcntl64(12, F_SETFD, FD_CLOEXEC)        = 0
+getsockname(8, {sa_family=AF_INET, sin_port=htons(80), sin_addr=inet_addr("192.168.2.127")}, [112->16]) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin", O_RDONLY|O_NOCTTY|O_LARGEFILE|O_CLOEXEC|O_DIRECTORY) = 14
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x76f762c8) = 1612
+close(14)                               = 0
+close(13)                               = 0
+close(10)                               = 0
+close(11)                               = 0
+fcntl64(12, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+epoll_ctl(7, EPOLL_CTL_ADD, 12, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=12, u64=12}}) = 0
+epoll_ctl(7, EPOLL_CTL_MOD, 8, {EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+epoll_wait(7, [{EPOLLHUP, {u32=12, u64=12}}], 1025, 1000) = 1
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1612, si_uid=33, si_status=2, si_utime=1, si_stime=0} ---
+rt_sigreturn({mask=[]})                 = 1
+epoll_ctl(7, EPOLL_CTL_DEL, 12, 0x7ecb2a28) = 0
+kill(1612, SIGTERM)                     = 0
+close(12)                               = 0
+writev(8, [{iov_base="HTTP/1.1 500 Internal Server Err"..., iov_len=146}, {iov_base="<?xml version=\"1.0\" encoding=\"is"..., iov_len=365}], 2) = 511
+ioctl(8, FIONREAD, [0])                 = 0
+read(8, 0x122a918, 4095)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_MOD, 8, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 2}], WNOHANG, NULL) = 1612
+wait4(-1, 0x7ecb2af0, WNOHANG, NULL)    = -1 ECHILD (No child processes)
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [{EPOLLIN, {u32=8, u64=8}}], 1025, 1000) = 1
+ioctl(8, FIONREAD, [491])               = 0
+read(8, "GET /cgi-bin/kareha.pl HTTP/1.1\r"..., 4095) = 491
+stat64("/var/www/html/cgi-bin/kareha.pl", {st_mode=S_IFREG|0755, st_size=32042, ...}) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin/kareha.pl", O_RDONLY|O_LARGEFILE) = 10
+close(10)                               = 0
+stat64("/usr/bin/perl", {st_mode=S_IFREG|0755, st_size=2844532, ...}) = 0
+openat(AT_FDCWD, "/usr/bin/perl", O_RDONLY|O_LARGEFILE) = 10
+close(10)                               = 0
+pipe2([10, 11], O_CLOEXEC)              = 0
+pipe2([12, 13], O_CLOEXEC)              = 0
+fcntl64(11, F_SETFD, FD_CLOEXEC)        = 0
+fcntl64(12, F_SETFD, FD_CLOEXEC)        = 0
+getsockname(8, {sa_family=AF_INET, sin_port=htons(80), sin_addr=inet_addr("192.168.2.127")}, [112->16]) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin", O_RDONLY|O_NOCTTY|O_LARGEFILE|O_CLOEXEC|O_DIRECTORY) = 14
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x76f762c8) = 1613
+close(14)                               = 0
+close(13)                               = 0
+close(10)                               = 0
+close(11)                               = 0
+fcntl64(12, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+epoll_ctl(7, EPOLL_CTL_ADD, 12, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=12, u64=12}}) = 0
+epoll_ctl(7, EPOLL_CTL_MOD, 8, {EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+epoll_wait(7, [{EPOLLHUP, {u32=12, u64=12}}], 1025, 1000) = 1
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1613, si_uid=33, si_status=2, si_utime=0, si_stime=1} ---
+rt_sigreturn({mask=[]})                 = 1
+epoll_ctl(7, EPOLL_CTL_DEL, 12, 0x7ecb2a28) = 0
+kill(1613, SIGTERM)                     = 0
+close(12)                               = 0
+writev(8, [{iov_base="HTTP/1.1 500 Internal Server Err"..., iov_len=146}, {iov_base="<?xml version=\"1.0\" encoding=\"is"..., iov_len=365}], 2) = 511
+ioctl(8, FIONREAD, [0])                 = 0
+read(8, 0x122a918, 4095)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_MOD, 8, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 2}], WNOHANG, NULL) = 1613
+wait4(-1, 0x7ecb2af0, WNOHANG, NULL)    = -1 ECHILD (No child processes)
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [{EPOLLIN, {u32=8, u64=8}}], 1025, 1000) = 1
+ioctl(8, FIONREAD, [456])               = 0
+read(8, "GET /cgi-bin/ HTTP/1.1\r\nHost: na"..., 4095) = 456
+stat64("/var/www/html/cgi-bin/", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/index.php", 0x7ecb2880) = -1 ENOENT (No such file or directory)
+stat64("/var/www/html/cgi-bin/index.html", 0x7ecb2880) = -1 ENOENT (No such file or directory)
+stat64("/var/www/html/cgi-bin/index.lighttpd.html", 0x7ecb2880) = -1 ENOENT (No such file or directory)
+statfs64("/var/www/html/cgi-bin/", 88, 0x7ecb25d0) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin/", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_CLOEXEC|O_DIRECTORY) = 10
+fstat64(10, {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+getdents64(10, /* 20 entries */, 32768) = 632
+stat64("/var/www/html/cgi-bin/kareha.pl", {st_mode=S_IFREG|0755, st_size=32042, ...}) = 0
+stat64("/var/www/html/cgi-bin/config.pl", {st_mode=S_IFREG|0755, st_size=577, ...}) = 0
+stat64("/var/www/html/cgi-bin/templates.pl", {st_mode=S_IFREG|0755, st_size=17044, ...}) = 0
+stat64("/var/www/html/cgi-bin/mode_message", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/wakautils.pl", {st_mode=S_IFREG|0755, st_size=32069, ...}) = 0
+stat64("/var/www/html/cgi-bin/spam.txt", {st_mode=S_IFREG|0755, st_size=5696, ...}) = 0
+stat64("/var/www/html/cgi-bin/strace.output", {st_mode=S_IFREG|0644, st_size=7306, ...}) = 0
+stat64("/var/www/html/cgi-bin/mode_image", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/config_defaults.pl", {st_mode=S_IFREG|0755, st_size=8037, ...}) = 0
+stat64("/var/www/html/cgi-bin/admin.pl", {st_mode=S_IFREG|0755, st_size=12758, ...}) = 0
+stat64("/var/www/html/cgi-bin/thumb", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/src", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/extras", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/example.htaccess", {st_mode=S_IFREG|0755, st_size=575, ...}) = 0
+stat64("/var/www/html/cgi-bin/kareha.ico", {st_mode=S_IFREG|0755, st_size=894, ...}) = 0
+stat64("/var/www/html/cgi-bin/res", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat64("/var/www/html/cgi-bin/kareha.js", {st_mode=S_IFREG|0755, st_size=6150, ...}) = 0
+stat64("/var/www/html/cgi-bin/captcha.pl", {st_mode=S_IFREG|0755, st_size=7834, ...}) = 0
+getdents64(10, /* 0 entries */, 32768)  = 0
+close(10)                               = 0
+writev(8, [{iov_base="HTTP/1.1 200 OK\r\nContent-Type: t"..., iov_len=128}, {iov_base="<!DOCTYPE html>\n<html>\n<head>\n<t"..., iov_len=8571}], 2) = 8699
+ioctl(8, FIONREAD, [0])                 = 0
+read(8, 0x1230820, 8575)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(7, [{EPOLLIN, {u32=8, u64=8}}], 1025, 1000) = 1
+ioctl(8, FIONREAD, [417])               = 0
+read(8, "GET /digitalSecurityLogo.png HTT"..., 8575) = 417
+stat64("/var/www/html/digitalSecurityLogo.png", 0x7ecb2900) = -1 ENOENT (No such file or directory)
+writev(8, [{iov_base="HTTP/1.1 404 Not Found\r\nContent-"..., iov_len=134}, {iov_base="<?xml version=\"1.0\" encoding=\"is"..., iov_len=341}], 2) = 475
+ioctl(8, FIONREAD, [0])                 = 0
+read(8, 0x1230820, 8575)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [{EPOLLIN, {u32=8, u64=8}}], 1025, 1000) = 1
+ioctl(8, FIONREAD, [521])               = 0
+read(8, "GET /cgi-bin/wakautils.pl HTTP/1"..., 8575) = 521
+stat64("/var/www/html/cgi-bin/wakautils.pl", {st_mode=S_IFREG|0755, st_size=32069, ...}) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin/wakautils.pl", O_RDONLY|O_LARGEFILE) = 10
+close(10)                               = 0
+stat64("/usr/bin/perl", {st_mode=S_IFREG|0755, st_size=2844532, ...}) = 0
+openat(AT_FDCWD, "/usr/bin/perl", O_RDONLY|O_LARGEFILE) = 10
+close(10)                               = 0
+pipe2([10, 11], O_CLOEXEC)              = 0
+pipe2([12, 13], O_CLOEXEC)              = 0
+fcntl64(11, F_SETFD, FD_CLOEXEC)        = 0
+fcntl64(12, F_SETFD, FD_CLOEXEC)        = 0
+getsockname(8, {sa_family=AF_INET, sin_port=htons(80), sin_addr=inet_addr("192.168.2.127")}, [112->16]) = 0
+openat(AT_FDCWD, "/var/www/html/cgi-bin", O_RDONLY|O_NOCTTY|O_LARGEFILE|O_CLOEXEC|O_DIRECTORY) = 14
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x76f762c8) = 1614
+close(14)                               = 0
+close(13)                               = 0
+close(10)                               = 0
+close(11)                               = 0
+fcntl64(12, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+epoll_ctl(7, EPOLL_CTL_ADD, 12, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=12, u64=12}}) = 0
+epoll_ctl(7, EPOLL_CTL_MOD, 8, {EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+epoll_wait(7, [{EPOLLHUP, {u32=12, u64=12}}], 1025, 1000) = 1
+epoll_ctl(7, EPOLL_CTL_DEL, 12, 0x7ecb2a28) = 0
+kill(1614, SIGTERM)                     = 0
+close(12)                               = 0
+writev(8, [{iov_base="HTTP/1.1 500 Internal Server Err"..., iov_len=146}, {iov_base="<?xml version=\"1.0\" encoding=\"is"..., iov_len=365}], 2) = 511
+ioctl(8, FIONREAD, [0])                 = 0
+read(8, 0x1230820, 8575)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_MOD, 8, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=8, u64=8}}) = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1614, si_uid=33, si_status=0, si_utime=23, si_stime=3} ---
+rt_sigreturn({mask=[]})                 = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 1614
+wait4(-1, 0x7ecb2af0, WNOHANG, NULL)    = -1 ECHILD (No child processes)
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [{EPOLLIN|EPOLLRDHUP, {u32=9, u64=9}}], 1025, 1000) = 1
+ioctl(9, FIONREAD, [0])                 = 0
+read(9, "", 8575)                       = 0
+shutdown(9, SHUT_WR)                    = 0
+recv(9, "", 16384, MSG_TRUNC|MSG_DONTWAIT|MSG_NOSIGNAL) = 0
+epoll_ctl(7, EPOLL_CTL_DEL, 9, 0x7ecb29e0) = 0
+close(9)                                = 0
+epoll_wait(7, [{EPOLLIN, {u32=4, u64=4}}], 1025, 1000) = 1
+accept4(4, {sa_family=AF_INET, sin_port=htons(65505), sin_addr=inet_addr("192.168.2.5")}, [112->16], SOCK_CLOEXEC|SOCK_NONBLOCK) = 9
+ioctl(9, FIONREAD, [0])                 = 0
+read(9, 0x1230820, 8575)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_ADD, 9, {EPOLLIN|EPOLLERR|EPOLLHUP|EPOLLRDHUP, {u32=9, u64=9}}) = 0
+accept4(4, 0x7ecb29ec, [112], SOCK_CLOEXEC|SOCK_NONBLOCK) = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+shutdown(8, SHUT_WR)                    = 0
+recv(8, 0x7ecaea3c, 16384, MSG_TRUNC|MSG_DONTWAIT|MSG_NOSIGNAL) = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+recv(8, 0x7ecaea3c, 16384, MSG_TRUNC|MSG_DONTWAIT|MSG_NOSIGNAL) = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(7, EPOLL_CTL_DEL, 8, 0x7ecb29e0) = 0
+close(8)                                = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+openat(AT_FDCWD, "/proc/loadavg", O_RDONLY) = 8
+read(8, "0.06 0.14 0.12 1/263 1614\n", 64) = 26
+close(8)                                = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7, [{EPOLLIN|EPOLLRDHUP, {u32=9, u64=9}}], 1025, 1000) = 1
+ioctl(9, FIONREAD, [0])                 = 0
+read(9, "", 4095)                       = 0
+shutdown(9, SHUT_WR)                    = 0
+recv(9, "", 16384, MSG_TRUNC|MSG_DONTWAIT|MSG_NOSIGNAL) = 0
+epoll_ctl(7, EPOLL_CTL_DEL, 9, 0x7ecb29e0) = 0
+close(9)                                = 0
+epoll_wait(7, [], 1025, 1000)           = 0
+epoll_wait(7,  <detached ...>

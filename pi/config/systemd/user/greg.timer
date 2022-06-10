@@ -1,0 +1,13 @@
+[Unit]
+Description=Weekly timer that launches podcast downloads via greg every Sunday & Thursday at 3pm pacific
+Documentation=greg -h
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+OnCalendar=Sun,Thu 15:00:00 America/Los_Angeles
+Persistent=true
+Unit=greg.service
+
+[Install]
+WantedBy=timers.target

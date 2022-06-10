@@ -1,0 +1,9 @@
+[Unit]
+Description=A job to run greg podcast downloader
+
+[Service]
+Type=simple
+ExecStart=/bin/schedule-greg.sh
+
+[Install]
+WantedBy=multi-user.target

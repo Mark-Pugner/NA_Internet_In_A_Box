@@ -1,0 +1,10 @@
+[Unit]
+Description=A job to update the ices playlist on Thursdays & Sundays at 4:30 pm pacific
+
+[Service]
+Type=exec
+ExecStart=/bin/schedule-ices-playlist-generator.sh
+
+[Install]
+WantedBy=timers.target
+

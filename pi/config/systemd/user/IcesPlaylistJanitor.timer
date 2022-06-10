@@ -1,0 +1,12 @@
+[Unit]
+Description=Update Podcast Playlist
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+OnCalendar=Sun,Thu *-*-* 16:30:00 America/Los_Angeles
+Persistent=true
+Unit=IcesPlaylistJanitor.service
+
+[Install]
+WantedBy=timers.target
