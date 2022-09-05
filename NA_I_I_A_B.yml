@@ -15,8 +15,8 @@
      int_count: "{{ ansible_interfaces | count }}"
      version:
        Build: NA_IIAB
-       BuildDate: "04_25_22"
-       Ver: 0.2
+       BuildDate: "09_05_22"
+       Ver: 0.3
        Author: inquiries@nahotspot.com
    tasks:
 
@@ -1035,7 +1035,7 @@
    - name: Enable the OwnerChange.sh timer resets ownership one minute after boot
      command: systemctl enable chown.timer
      tags: 
-     - streamer
+     - streamerx
 
    - name: Copy lighttpd configuration files over to target (enables SSL & error page redirects)
      ansible.posix.synchronize:

@@ -11,21 +11,21 @@
             },
             "name": "HotspotUI",
             "type": "url",
-            "url": "http://33.33.33.33/"
+            "url": "http://na-internet-in-a-box.local/"
          }, {
             "date_added": "13289018195585962",
             "guid": "330f8140-4040-446e-b5d6-e05e87f59b56",
             "id": "6",
             "name": "Local Chat Board",
             "type": "url",
-            "url": "http://33.33.33.33/cgi-bin/"
+            "url": "http://na-internet-in-a-box.local/cgi-bin/"
          }, {
             "date_added": "13289018305225209",
             "guid": "b878713c-c83c-4a73-b698-ed760bf13e55",
             "id": "7",
             "name": "Icecast Streaming Media Server",
             "type": "url",
-            "url": "http://33.33.33.33:8000/"
+            "url": "http://na-internet-in-a-box.local:8000/"
          } ],
          "date_added": "13196294379424546",
          "date_modified": "13289018305225209",
