@@ -1027,12 +1027,28 @@
      - streamer
      - Ices  
 
+   - name: Enable the OwnerChange.sh service which tweaks the group ownership of /tmp/hostapd.log and /tmp/dnsmasq.log to www-data.  This enables read access to the appropriate logs  
+     command: systemctl enable chown.service
+     tags: 
+     - streamer
+
+   - name: Enable the OwnerChange.sh timer resets ownership one minute after boot
+     command: systemctl enable chown.timer
+     tags: 
+     - streamer
+
    - name: Copy lighttpd configuration files over to target (enables SSL & error page redirects)
      ansible.posix.synchronize:
        src: "{{ root_playbook_dir }}/etc/lighttpd/"
        dest:  /etc/lighttpd/
        recursive: yes
      tags: web
+
+   - name: copy the lighttpd password file used as credentials for accessing the logs directory
+     ansible.builtin.copy: 
+       src: "{{ root_playbook_dir }}/pi/.lighttpdpassword"
+       dest: /home/pi/.lighttpdpassword
+     tags: streamer
 
    - name: wget the ices 0.4 client (Deprecated version that supports MP3s)
      command: wget -O /tmp/ices-0.4.tar.gz http://downloads.us.xiph.org/releases/ices/ices-0.4.tar.gz
@@ -1528,8 +1544,53 @@
         - fr
         - ru
 
-   - name: Pause until you can verify updates to an application were successful
-     pause:
+   - name: Touch the na-internet-in-a-box.local.access.log so we can create a symbolic link
+     ansible.builtin.file:
+       path: /var/log/lighttpd/na-internet-in-a-box.local.access.log
+       state: touch
+       mode: u=rw,g=r,o=r
+     tags: streamer
+
+   - name: Create a symbolic link for the na-internet-in-a-box web access log
+     ansible.builtin.file:
+       src: /var/log/lighttpd/na-internet-in-a-box.local.access.log
+       dest: /var/www/html/logs/na-internet-in-a-box.local.access.log
+       owner: www-data
+       group: www-data
+       state: link
+     tags: streamer
+
+   - name: Touch the /tmp/hostapd.log so we can create a symbolic link
+     ansible.builtin.file:
+       path: /tmp/hostapd.log
+       state: touch
+       mode: u=rw,g=r,o=r
+     tags: streamer
+
+   - name: Create a symbolic link for the hostapd log file
+     ansible.builtin.file:
+       src: /tmp/hostapd.log
+       dest: /var/www/html/logs/hostapd.log
+       owner: www-data
+       group: www-data
+       state: link
+     tags: streamer
+
+   - name: Touch the /tmp/hostapd.log so we can create a symbolic link
+     ansible.builtin.file:
+       path: /tmp/dnsmasq.log
+       state: touch
+       mode: u=rw,g=r,o=r
+     tags: streamer
+
+   - name: Create a symbolic link for the dnsmasq.log file
+     ansible.builtin.file:
+       src: /tmp/dnsmasq.log
+       dest: /var/www/html/logs/dnsmasq.log
+       owner: www-data
+       group: www-data
+       state: link
+     tags: streamer
 
    - name: shutdown the system in 1 minute
      command: shutdown -h +1
