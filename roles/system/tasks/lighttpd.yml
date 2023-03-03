@@ -1,0 +1,54 @@
+---
+
+   - name: Install lighttpd 
+     apt:
+       name: lighttpd
+       state: present
+       update_cache: true
+     tags: 
+     - streamer
+     - KarehaDiscussionBoard
+
+   - name: Create /var/www/html directory
+     file: path=/var/www/html state=directory mode=0755 owner=www-data group=www-data
+     tags: 
+       - LearnLinuxNetworkingHacking
+
+   - name: chmoding /var/www/html/
+     file:
+       path: /var/www/html/
+       owner: www-data
+       group: www-data
+       mode: 0755
+       recurse: yes
+     tags: web
+
+   - name: Copy /var/www/html/lighttpd-dir.css css to make the directory listings pretty #Likely needs updates if I change interfaces
+     copy:
+       src: "{{ root_playbook_dir }}/var/www/html/lighttpd-dir.css"
+       dest: /var/www/html/lighttpd-dir.css
+       owner: root
+       group: root
+       mode: 0744
+     tags: web
+
+   - name: Delete lighttpd default index.html file 
+     file: path=/var/www/html/index.lighttpd.html state=absent
+     tags: web_ui
+
+#   - name: enable lighttpd access logging 
+#     command: lighttpd-enable-mod accesslog
+#     tags: os_config_files
+
+   - name: Copy lighttpd configuration files over to target (enables SSL & error page redirects)
+     ansible.posix.synchronize:
+       src: "{{ root_playbook_dir }}/etc/lighttpd/"
+       dest:  /etc/lighttpd/
+       recursive: yes
+     tags: web
+
+   - name: copy the lighttpd password file used as credentials for accessing the logs directory
+     ansible.builtin.copy: 
+       src: "{{ root_playbook_dir }}/pi/.lighttpdpassword"
+       dest: /home/pi/.lighttpdpassword
+     tags: streamer

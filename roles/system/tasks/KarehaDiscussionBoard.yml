@@ -1,0 +1,41 @@
+---
+     #
+     #https://wakaba.c3.cx/docs/docs.html#KarehaQuickStart 
+     #The scripts themselves (wakaba.pl, kareha.pl and captcha.pl) need to be set as executable. 
+     #This usually just means setting the permissions to 755.
+     #All the scripts need to be able to write to the directory they live in, 
+     #and some subdirectories such as res/, src/ and thumb/. How to accomplish this varies depending on how your web server is set up.
+   - name: Create /var/www/html/cgi-bin directory
+     file: path=/var/www/html/cgi-bin state=directory mode=0755 owner=www-data group=www-data
+     tags: KarehaDiscussionBoard
+
+   - name: Install php 
+     apt:
+       name: php
+       state: present
+       update_cache: true
+     tags: KarehaDiscussionBoard
+
+   - name: Install php7.4-gd 
+     apt:
+       name: php7.4-gd 
+       state: present
+       update_cache: true
+     tags: KarehaDiscussionBoardsionBoard
+
+   - name: Install php7.4-curl 
+     apt:
+       name: php7.4-curl 
+       state: present
+       update_cache: true
+     tags: KarehaDiscussionBoard
+
+   - name: Install libcgi-session-perl (needed for futaba imageboard)
+     apt:
+       name: libcgi-session-perl
+       state: present
+       update_cache: true
+     tags: KarehaDiscussionBoard
+
+
+     ## Web content for Kareha board is copied via webservercontent.yml file

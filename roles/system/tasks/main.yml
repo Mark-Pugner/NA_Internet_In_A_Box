@@ -1,0 +1,11 @@
+---
+- import_tasks: essential.yml
+- import_tasks: dnsmasq.yml
+- import_tasks: hostapd.yml
+- import_tasks: lighttpd.yml
+- import_tasks: captivePortal.yml
+- import_tasks: webservercontent.yml
+- import_tasks: KarehaDiscussionBoard.yml
+- import_tasks: streamer.yml
+- import_tasks: NA_I_I_A_B.yml
+- import_tasks: final_cleanup.yml

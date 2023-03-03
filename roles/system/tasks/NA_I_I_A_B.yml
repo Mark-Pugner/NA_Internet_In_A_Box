@@ -1,0 +1,12 @@
+---
+
+   - name: Install opendrop (Enables air-drop between devices on the network)
+     apt:
+       name: opendrop
+       state: present
+       update_cache: true
+     tags: 
+     - Sharing
+     - noagenda
+
+
