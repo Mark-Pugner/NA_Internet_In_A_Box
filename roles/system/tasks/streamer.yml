@@ -28,7 +28,6 @@
      synchronize:
        src: "{{ root_playbook_dir }}/pi/libogg-1.3.5"
        dest: /home/pi/.
-       mode: 0744
      become_user: pi   
      tags: 
      - streamer
@@ -43,6 +42,20 @@
      - streamer
      - icecast
      - ices
+
+   - name: Recursively change ownership of streming prerequisites
+     ansible.builtin.file:
+       path: "{{ item }}"
+       state: directory
+       recurse: yes
+       owner: pi
+       group: pi
+       mode: 0700
+     loop:
+         - /home/pi/libvorbis-1.3.7
+         - /home/pi/libshout-2.4.5
+         - /home/pi/libogg-1.3.5 
+         - /home/pi/ices-2.0.3
 
    - name: Copy systemd timers & services files for greg, ices and device registration
      synchronize:
@@ -142,37 +155,6 @@
        state: present
        update_cache: true
      tags: streamer
-
-   - name: Recursively change ownership of libvorbis-1.3.7 directory
-     ansible.builtin.file:
-       path: /home/pi/libvorbis-1.3.7
-       state: directory
-       recurse: yes
-       owner: pi
-       group: pi
-
-   - name: Recursively change ownership of libshout-2.4.5 directory
-     ansible.builtin.file:
-       path: /home/pi/libshout-2.4.5
-       state: directory
-       recurse: yes
-       owner: pi
-       group: pi
-   - name: Recursively change ownership of libogg-1.3.5  directory
-     ansible.builtin.file:
-       path: /home/pi/libogg-1.3.5 
-       state: directory
-       recurse: yes
-       owner: pi
-       group: pi
-
-   - name: Recursively change ownership of ices-2.0.3 directory
-     ansible.builtin.file:
-       path: /home/pi/ices-2.0.3
-       state: directory
-       recurse: yes
-       owner: pi
-       group: pi
 
    - name: make libogg
      become_user: pi
