@@ -3,15 +3,14 @@ py_version: 3.8.0
 threads: 4
 temp_folder: /tmp
 # ***BE SURE TO INCREMENT THE FOLLOWING 3 VARIABLES IF YOU ARE UPGRADING THE HOTSPOT
-root_playbook_dir:  /home/pi/Playbooks/NA_Internet_In_A_Box2
+root_playbook_dir:  /home/pi/Playbooks/NA_Internet_In_A_Box
 os_info_path: /etc/os-release
 int_count: "{{ ansible_interfaces | count }}"
 docker_host: "{{ lookup('ansible.builtin.env', 'DOCKER_HOST') }}"
-new_password: "Passw@rd"
-wifi_password: "dragon" #This is not correctly implemented yet 1_29_23
+new_password: "ChangeDefaultPWD3331333"
 hostname: "NA-Internet-In-A-Box"
 version:
   Build: NA_IIAB
-  BuildDate: "03_27_23"
-  Ver: 0.5
+  BuildDate: "04_03_23"
+  Ver: 0.6
   Author: inquiries@nahotspot.com

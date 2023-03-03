@@ -3,7 +3,6 @@
 # Getting started
 Download the [firmware image](https://na-iiab.s3.us-west-2.amazonaws.com/NA_IIABSHRANK.IMG.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXYO4E3MJVQXIPO3B%2F20220301%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220301T182653Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=3ef0963c1e25896ed5dbdd7ae7322c04a85c86c63d642cd5a22b45abe30a7a89 )
 
-Please note, that this URL will expire in 1 week (Monday, May 8th, 2022)
 
 From the command line, extract the file:
 
